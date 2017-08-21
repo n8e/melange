@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import routes from '../routes';
-import DevTools from './DevTools';
 
 const Root = ({ store, history }) => (
   <Provider store={store}>
     <div>
       <Router history={history} routes={routes} />
-      { history.getCurrentLocation().pathname !== '/signin' ? <DevTools /> : null }
     </div>
   </Provider>
 );

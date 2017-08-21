@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import './css/Login.css';
 
 const Login = props => (
-  <div className="container">
+  <div className="login-container">
     <div className="title-header">Login</div>
     <div>
       {props.errors.email ? (

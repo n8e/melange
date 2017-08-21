@@ -1,17 +1,13 @@
-export function getAuthToken() {
-  return window && window.localStorage
-    ? window.localStorage.getItem('token')
-    : null;
+import { getCookie, setCookie, invalidateCookie } from './authUtils';
+
+export function viewToken() {
+  return getCookie('token');
 }
 
-export function setAuthToken(token) {
-  window.localStorage.setItem('token', token);
+export function storeToken(token) {
+  return setCookie('token', token, 1);
 }
 
 export function removeAuthToken() {
-  window.localStorage.removeItem('token');
-}
-
-export function parseUserFromToken() {
-  return JSON.parse(window.atob(getAuthToken().split('.')[1]));
+  return invalidateCookie('token');
 }

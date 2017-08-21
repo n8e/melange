@@ -1,10 +1,9 @@
-/* eslint-disable no-undef */
-
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Nav, Navbar, MenuItem, NavItem, NavDropdown } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { resetErrorMessage } from '../actions'
+import { toJS } from 'immutable';
 
 class Header extends Component {
   static propTypes = {
@@ -21,42 +20,46 @@ class Header extends Component {
     browserHistory.push(`/${nextValue}`)
   }
 
-  renderErrorMessage() {
-    const { errorMessage } = this.props
-    if (!errorMessage) {
-      return null
-    }
-
+  renderNavBar() {
     return (
-      <p style={{ backgroundColor: '#e99', padding: 10 }}>
-        <b>{errorMessage}</b>
-        {' '}
-        <button onClick={this.handleDismissClick}>
-          Dismiss
-        </button>
-      </p>
-    )
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">Melange</a>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <NavItem href="/chat">Chat</NavItem>
+            <NavDropdown title={this.props.auth.credentials.email || 'Logged in user'} id="basic-nav-dropdown">
+              <MenuItem href="/dashboard">Dashboard</MenuItem>
+              <MenuItem divider />
+              <MenuItem href="/logout">Logout</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
   }
 
   render() {
-    const { children, inputValue } = this.props
+    const { children } = this.props
     return (
       <div>
-        { this.props.location.pathname === '/' ? (
-          <img src="./assets/Header.jpeg" alt="Header" style={{width:'100%', height:'5%'}}/>) : null
-        }
-        <hr />
-        {children}
+        <div>
+          { this.props.location.pathname !== '/signin' ? this.renderNavBar() : null }
+        </div>
+        <div>
+          {children}
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  errorMessage: state.errorMessage,
-  inputValue: ownProps.location.pathname.substring(1)
+  auth: state.authentication.toJS(),
 })
 
-export default connect(mapStateToProps, {
-  resetErrorMessage
-})(Header)
+export default connect(mapStateToProps)(Header)
