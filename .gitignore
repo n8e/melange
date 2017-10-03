@@ -9,6 +9,9 @@ node_modules
 # production
 build
 
+#package lock files
+package-lock.json
+
 # misc
 .DS_Store
 npm-debug.log
