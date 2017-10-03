@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { toJS } from 'immutable';
+import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { browserHistory } from 'react-router';
 
-import Chat from '../components/Chat';
-import { sendChatName, sendChatMessage, testBrowserSupport } from '../actions';
+import Chat from '../components/chat/Chat';
+import { sendChatName, sendChatMessage } from '../actions';
 
 class ChatPageContainer extends Component {
   constructor(props) {
@@ -20,10 +20,6 @@ class ChatPageContainer extends Component {
 
     this.handleSendMessageAction = this.handleSendMessageAction.bind(this);
     this.handleSendNameAction = this.handleSendNameAction.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.dispatch(testBrowserSupport());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,7 +38,6 @@ class ChatPageContainer extends Component {
   }
 
   render() {
-    console.log('CHat Page props', this.props.messaging);
     return (
       <Chat
         handleSendNameAction={this.handleSendNameAction}

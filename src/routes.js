@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import Header from './containers/Header';
 import App from './containers/App';
 import ChatPage from './containers/ChatPage';
+import DashboardPage from './containers/DashboardContainer';
 import LoginPage from './containers/LoginPage';
 import LogoutView from './containers/LogoutPage';
 
@@ -29,6 +30,12 @@ export default <Route path="/" component={Header}>
     path="/logout"
     component={LogoutView}
   />
+  <Route
+    path="/dashboard"
+    component={DashboardPage}
+    onEnter={checkAuth}
+  />
+
   <Route
     path="/chat"
     component={ChatPage}

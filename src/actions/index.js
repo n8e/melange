@@ -1,5 +1,3 @@
-import firebase from 'firebase';
-import config from '../config/index';
 import {
   loadUser,
   resetErrorMessage,
@@ -28,12 +26,7 @@ import {
   sendChatMessage,
   sendChatName,
   connectionError,
-  browserNotSupported,
-  browserSupported,
-  testBrowserSupport,
-} from './webSockets';
-
-firebase.initializeApp(config);
+} from './messaging';
 
 export {
   loadUser,
@@ -61,7 +54,4 @@ export {
   openEvent,
   openEventMethod,
   connectionError,
-  browserNotSupported,
-  browserSupported,
-  testBrowserSupport,
 };

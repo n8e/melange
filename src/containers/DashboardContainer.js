@@ -1,4 +1,4 @@
-import { toJS } from 'immutable';
+import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux';
 import Dashboard from '../components/dashboard/Dashboard';
 

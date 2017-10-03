@@ -1,5 +1,5 @@
 import { Map, fromJS } from 'immutable';
-import { viewToken } from '../utils';
+import { viewToken, getEmail } from '../utils';
 import fieldsValidationReducer from './fieldsValidationReducer';
 
 export const INITIAL_AUTH_STATE = Map({
@@ -7,7 +7,7 @@ export const INITIAL_AUTH_STATE = Map({
   isFetching: false,
   credentials: Map({
     username: '',
-    email: '',
+    email: getEmail(),
     password: '',
     confirmPassword: '',
   }),

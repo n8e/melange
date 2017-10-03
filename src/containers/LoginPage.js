@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { toJS } from 'immutable';
+import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { browserHistory } from 'react-router';
 
 import Login from '../components/Login';
@@ -75,6 +75,9 @@ LoginPageContainer.defaultProps = {
 
 LoginPageContainer.propTypes = {
   auth: PropTypes.shape({
+    user: PropTypes.shape({
+      token: PropTypes.string,
+    }),
     isShowingLogin: PropTypes.bool,
     isFetching: PropTypes.bool,
     credentials: PropTypes.object,

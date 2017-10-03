@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './css/Chat.css';
+import '../css/Chat.css';
 
 const getMessageTime = (timeStr) => {
   const dt = new Date(timeStr);
@@ -24,14 +24,19 @@ class Chat extends Component {
   handleKeyDown(e) {
     if (e.keyCode === 13) {
       const msg = e.target.value;
+      const chatObj = {
+        conversationId: this.props.messaging.conversationId,
+        message: msg,
+        author: this.props.messaging.name,
+      };
       if (!msg) {
         return;
       }
       if (!this.props.messaging.name) {
-        this.props.handleSendNameAction(msg);
+        this.props.handleSendNameAction(chatObj);
         return;
       }
-      this.props.handleSendMessageAction(msg);
+      this.props.handleSendMessageAction(chatObj);
     }
   }
 
@@ -40,8 +45,8 @@ class Chat extends Component {
       const msg = message.message;
       return (
         <p key={i}>
-          <span style={{ color: msg.color }}>{msg.author}</span>
-          {`@${getMessageTime(msg.time)}: ${msg.text}`}
+          <span style={{ color: msg.color }}>{`${msg.author}: `}</span>
+          {`@${getMessageTime(msg.time)}: ${msg.message}`}
         </p>
       );
     });
@@ -51,16 +56,13 @@ class Chat extends Component {
     return (
       <div>
         <div id="content">
-          {this.props.messaging.content.html ? (<p>{this.props.messaging.content.html}</p>) : null}
-          {this.props.messaging.message ? this.renderMessages([this.props.messaging.message]) : null}
+          {this.props.messaging.messages && this.props.messaging.messages.length !== 0 ? this.renderMessages(this.props.messaging.messages) : null}
         </div>
         <div>
-          <span id="status">{this.props.messaging.status.text || 'Connecting...'}</span>
+          <span id="status" style={{ color: '#83254A' }}>{this.props.messaging.name || 'Connecting...'}</span>
           <input
             type="text"
             id="input"
-            style={{ display: this.props.messaging.input.hidden ? 'none' : 'block' }}
-            disabled={this.props.messaging.input.disabled}
             onKeyDown={this.handleKeyDown}
           />
         </div>
@@ -71,17 +73,9 @@ class Chat extends Component {
 
 Chat.propTypes = {
   messaging: PropTypes.shape({
+    conversationId: PropTypes.string,
     name: PropTypes.string,
-    content: PropTypes.shape({
-      html: PropTypes.string,
-    }),
-    input: PropTypes.shape({
-      disabled: PropTypes.bool,
-      hidden: PropTypes.bool,
-    }),
-    status: PropTypes.shape({
-      text: PropTypes.string,
-    }),
+    messages: PropTypes.array,
   }).isRequired,
   handleSendMessageAction: PropTypes.func.isRequired,
   handleSendNameAction: PropTypes.func.isRequired,

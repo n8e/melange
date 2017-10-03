@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { CALL_API, Schemas } from '../middleware/api';
-import { storeToken, removeAuthToken } from '../utils';
+import { storeCredentials, removeAuthToken } from '../utils';
 import {
   CREDENTIALS_UPDATE,
   LOGIN_REQUEST,
@@ -51,9 +51,6 @@ export const loadUser = (login, requiredFields = []) => (dispatch, getState) => 
 export const resetErrorMessage = () => ({
   type: RESET_ERROR_MESSAGE,
 });
-
-
-/* AUTH ACTIONS */
 
 export const validateAuthField = field => ({
   type: VALIDATE_AUTH_FIELD,
@@ -110,7 +107,7 @@ export const loginUser = credentials => (dispatch) => {
   return firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
     .then((user) => {
       user = constructFirebaseUser(user);
-      storeToken(user.data.token);
+      storeCredentials({ token: user.data.token, email: user.data.email });
       dispatch(loginSuccess(user));
     })
     .catch((error) => {

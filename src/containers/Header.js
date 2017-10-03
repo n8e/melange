@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Nav, Navbar, MenuItem, NavItem, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { toJS } from 'immutable';
+import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 
 class Header extends Component {
   static propTypes = {
