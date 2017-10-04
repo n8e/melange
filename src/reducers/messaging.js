@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 
 export const INITIAL_CHAT_STATE = Map({
-  conversationId: null,
+  profileId: null,
   name: null,
   message: null,
   nameColor: null,
@@ -24,7 +24,7 @@ const messaging = (state = INITIAL_CHAT_STATE, action) => {
 
     case 'SET_NAME':
       return state.merge(Map({
-        conversationId: action.payload.conversationId,
+        profileId: action.payload.profileId,
         name: action.payload.name,
         nameColor: action.payload.nameColor,
         textColor: action.payload.textColor,

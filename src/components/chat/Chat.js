@@ -25,7 +25,6 @@ class Chat extends Component {
     if (e.keyCode === 13) {
       const msg = e.target.value;
       const chatObj = {
-        conversationId: this.props.messaging.conversationId,
         message: msg,
         author: this.props.messaging.name,
       };
@@ -46,7 +45,7 @@ class Chat extends Component {
       return (
         <p key={i}>
           <span style={{ color: msg.color }}>{`${msg.author}: `}</span>
-          {`@${getMessageTime(msg.time)}: ${msg.message}`}
+          {`@${getMessageTime(msg.timeStamp)}: ${msg.message}`}
         </p>
       );
     });
@@ -73,7 +72,7 @@ class Chat extends Component {
 
 Chat.propTypes = {
   messaging: PropTypes.shape({
-    conversationId: PropTypes.string,
+    profileId: PropTypes.string,
     name: PropTypes.string,
     messages: PropTypes.array,
   }).isRequired,
