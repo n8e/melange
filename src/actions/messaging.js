@@ -14,6 +14,49 @@ firebase.initializeApp(config);
 
 export const dbRef = firebase.database().ref('users');
 
+// quick sort functionality
+const swap = (arr, i, j) => {
+  const temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+  return arr;
+};
+
+const partition = (arr, p, l, r) => {
+  const pivotValue = new Date(arr[p].message.timeStamp);
+  let partitionIndex = l;
+
+  for (let i = l; i < r; i += 1) {
+    if (new Date(arr[i].message.timeStamp) < pivotValue) {
+      swap(arr, i, partitionIndex);
+      partitionIndex += 1;
+    }
+  }
+  swap(arr, r, partitionIndex);
+  return partitionIndex;
+};
+
+const quickSort = (arr, l, r) => {
+  let pivot;
+  let partitionIndex;
+
+  if (l < r) {
+    pivot = r;
+    partitionIndex = partition(arr, pivot, l, r);
+
+    quickSort(arr, l, partitionIndex - 1);
+    quickSort(arr, partitionIndex + 1, r);
+  }
+  return arr;
+};
+
+const sorter = (test) => {
+  console.log('test:', test);
+  const right = test.length - 1;
+  return quickSort(test, 0, right);
+};
+
+
 // called each time a response is obtained from firebase listener
 export const refreshMessages = payload => ({
   type: REFRESH_MESSAGES,
@@ -69,7 +112,10 @@ dbRef.on('value', (snapshot) => {
       return dataPointStr;
     });
   }
-  return store.dispatch(refreshMessages(messages));
+  // sort messages by time before dispatching
+  const msgs = sorter(messages);
+  // dispatch messages
+  return store.dispatch(refreshMessages(msgs));
 }, () => store.dispatch(connectionError()));
 
 export const sendChatMessage = message => (dispatch) => {
