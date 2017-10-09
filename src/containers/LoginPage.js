@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { browserHistory } from 'react-router';
 
-import Login from '../components/Login';
+import Login from '../components/login/Login';
 import { validateAuthField, loginUser, credentialsUpdate } from '../actions';
 
 class LoginPageContainer extends Component {

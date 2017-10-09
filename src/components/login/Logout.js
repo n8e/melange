@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Logout = () => <noscript/>;
+const Logout = () => <noscript />;
 
 export default Logout;

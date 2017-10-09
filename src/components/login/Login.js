@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import './css/Login.css';
+import '../css/Login.css';
 
 const Login = props => (
   <div className="login-container">

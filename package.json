@@ -13,6 +13,7 @@
     "@vx/mock-data": "0.0.136",
     "@vx/scale": "0.0.136",
     "@vx/shape": "0.0.139",
+    "cloudinary-core": "^2.3.0",
     "d3-array": "^1.2.1",
     "firebase": "^4.2.0",
     "humps": "^2.0.0",
@@ -28,8 +29,8 @@
     "react-router": "^3.0.2",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0",
     "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.1.0",
     "validator": "^8.0.0"
   },
   "scripts": {

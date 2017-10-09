@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import LogoutView from '../components/Logout';
+import LogoutView from '../components/login/Logout';
 import { logoutUser } from '../actions';
 
 class LogoutPageContainer extends Component {
