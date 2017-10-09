@@ -51,11 +51,9 @@ const quickSort = (arr, l, r) => {
 };
 
 const sorter = (test) => {
-  console.log('test:', test);
   const right = test.length - 1;
   return quickSort(test, 0, right);
 };
-
 
 // called each time a response is obtained from firebase listener
 export const refreshMessages = payload => ({
@@ -85,13 +83,15 @@ dbRef.on('value', (snapshot) => {
 
   // get current user and dispatch profile to state
   const loginEmail = getEmail(); // get the email
-  const convID = getConversationId(loginEmail); // get conversation ID given loginEmail
-  store.dispatch(sendingName({
-    name: dataObj[convID] ? dataObj[convID].name : '',
-    profileId: convID,
-    nameColor: dataObj[convID] ? dataObj[convID].nameColor : '',
-    textColor: dataObj[convID] ? dataObj[convID].textColor : '',
-  }));
+  if (loginEmail) {
+    const convID = getConversationId(loginEmail); // get conversation ID given loginEmail
+    store.dispatch(sendingName({
+      name: dataObj[convID] ? dataObj[convID].name : '',
+      profileId: convID,
+      nameColor: dataObj[convID] ? dataObj[convID].nameColor : '',
+      textColor: dataObj[convID] ? dataObj[convID].textColor : '',
+    }));
+  }
 
   // construct messages object
   if (dataObj) {

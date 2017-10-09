@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Nav, Navbar, MenuItem, NavItem, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, MenuItem, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
@@ -22,7 +22,7 @@ class Header extends Component {
 
   renderNavBar() {
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar inverse collapseOnSelect style={{ borderRadius: '0px' }}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/">Melange</a>
@@ -31,9 +31,11 @@ class Header extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem href="/chat">Chat</NavItem>
-            <NavDropdown title={this.props.auth.credentials.email || 'Logged in user'} id="basic-nav-dropdown">
+            <NavDropdown title={this.props.auth.credentials ? this.props.auth.credentials.email : 'Logged in user'} id="basic-nav-dropdown">
+              <MenuItem href="/">Home</MenuItem>
               <MenuItem href="/dashboard">Dashboard</MenuItem>
+              <MenuItem href="/chat">Chat</MenuItem>
+              <MenuItem href="/profile">Profile</MenuItem>
               <MenuItem divider />
               <MenuItem href="/logout">Logout</MenuItem>
             </NavDropdown>

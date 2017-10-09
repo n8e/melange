@@ -1,0 +1,30 @@
+.profile-card {
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 4%;
+  width: 40%;
+}
+.profile-entry {
+  margin-top: 10px;
+  right: 0;
+  width: 30vw;
+  position: relative;
+  text-align: right;
+}
+.profile-input {
+  border: 1px solid #bebebe;
+  border-radius: 4px;
+  height: 30px;
+  text-align: center;
+  width: 60%;
+}
+.edit-button {
+  background: #9FBDE2;
+  border: 0 solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  height: 40px;
+  margin-top: 5%;
+  width: 50%;
+}

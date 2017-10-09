@@ -4,6 +4,7 @@ import Header from './containers/Header';
 import App from './containers/App';
 import ChatPage from './containers/ChatPage';
 import DashboardPage from './containers/DashboardContainer';
+import ProfilePage from './containers/ProfilePage';
 import LoginPage from './containers/LoginPage';
 import LogoutView from './containers/LogoutPage';
 
@@ -20,6 +21,11 @@ export default <Route path="/" component={Header}>
   <Route
     path="/home"
     component={App}
+    onEnter={checkAuth}
+  />
+  <Route
+    path="/profile"
+    component={ProfilePage}
     onEnter={checkAuth}
   />
   <Route

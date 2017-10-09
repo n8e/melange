@@ -6,6 +6,7 @@ import letterFrequencyData from './letterFrequencyData';
 import appleStockData from './appleStockData';
 import entities from './entities';
 import errorMessage from './errorMessage';
+import profile from './profile';
 
 const rootReducer = combineReducers({
   authentication,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   messaging,
   letterFrequencyData,
   appleStockData,
+  profile,
 });
 
 export default rootReducer;

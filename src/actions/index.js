@@ -27,6 +27,7 @@ import {
   sendChatName,
   connectionError,
 } from './messaging';
+import { profileUpdate } from './profile';
 
 export {
   loadUser,
@@ -54,4 +55,5 @@ export {
   openEvent,
   openEventMethod,
   connectionError,
+  profileUpdate,
 };
