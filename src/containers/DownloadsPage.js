@@ -1,8 +1,6 @@
-import React from 'react';
-import cloudinary from 'cloudinary-core';
 import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux';
-import Downloads from '../components/dashboard/Dashboard';
+import Downloads from '../components/downloads/Downloads';
 
 function mapStateToProps(state) {
   const { dispatch } = state;
