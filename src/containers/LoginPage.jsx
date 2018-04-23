@@ -48,6 +48,7 @@ class LoginPageContainer extends Component {
   }
 
   handleAuthAction() {
+    console.log('CREDENTIALS:', this.props.auth.credentials);
     this.props.dispatch(loginUser(this.props.auth.credentials));
   }
 

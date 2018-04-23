@@ -20,7 +20,7 @@ const Login = props => (
         <input
           name="email"
           type="email"
-          value={props.auth.credentials.email || ''}
+          value={props.auth.credentials.email || 'godmetweenciati@gmail.com'}
           onBlur={props.onValidateField}
           onChange={props.onFieldUpdate}
           placeholder="email"
@@ -32,7 +32,7 @@ const Login = props => (
         <input
           name="password"
           type="password"
-          value={props.auth.credentials.password || ''}
+          value={props.auth.credentials.password || 'Abcd123!'}
           onBlur={props.onValidateField}
           onChange={props.onFieldUpdate}
           placeholder="password"
@@ -50,14 +50,14 @@ Login.propTypes = {
       email: PropTypes.string,
       password: PropTypes.string,
     }),
-  }),
+  }).isRequired,
   errors: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string,
-  }),
-  onValidateField: PropTypes.func,
-  onAuthAction: PropTypes.func,
-  onFieldUpdate: PropTypes.func,
+  }).isRequired,
+  onValidateField: PropTypes.func.isRequired,
+  onAuthAction: PropTypes.func.isRequired,
+  onFieldUpdate: PropTypes.func.isRequired,
 };
 
 export default Login;

@@ -35,7 +35,7 @@ const AreaClosedChart = ({ data, width, height, yMax, margin, xStock, yStock, xS
           left={margin.left}
           label="Close"
           labelProps={{ fontSize: 12, fill: 'black' }}
-          tickFormat={(value, index) => `$${value}`}
+          tickFormat={value => `$${value}`}
           tickProps={(value, index) => ({
             dx: '0.33em',
             fill: 'black',

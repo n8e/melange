@@ -34,7 +34,6 @@ class Header extends Component {
             <NavDropdown title={this.props.auth.credentials ? this.props.auth.credentials.email : 'Logged in user'} id="basic-nav-dropdown">
               <MenuItem href="/">Home</MenuItem>
               <MenuItem href="/dashboard">Dashboard</MenuItem>
-              <MenuItem href="/downloads">Downloads</MenuItem>
               <MenuItem href="/chat">Chat</MenuItem>
               <MenuItem href="/profile">Profile</MenuItem>
               <MenuItem divider />

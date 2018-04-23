@@ -7,7 +7,6 @@ import DashboardPage from './containers/DashboardContainer';
 import ProfilePage from './containers/ProfilePage';
 import LoginPage from './containers/LoginPage';
 import LogoutView from './containers/LogoutPage';
-import DownloadsPage from './containers/DownloadsPage';
 
 import { viewToken } from './utils/index';
 
@@ -40,11 +39,6 @@ export default <Route path="/" component={Header}>
   <Route
     path="/dashboard"
     component={DashboardPage}
-    onEnter={checkAuth}
-  />
-  <Route
-    path="/downloads"
-    component={DownloadsPage}
     onEnter={checkAuth}
   />
 
