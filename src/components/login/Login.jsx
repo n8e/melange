@@ -4,7 +4,7 @@ import './Login.css';
 
 const Login = props => (
   <div className="login-container">
-    <div className="title-header">Login</div>
+    <div className="title-header">LOGIN</div>
     <div>
       {props.errors.email ? (
         <div className="error-class">{props.errors.email}</div>
