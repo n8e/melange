@@ -51,7 +51,7 @@ LogoutPageContainer.propTypes = {
 
 function mapStateToProps(state) {
   const { dispatch } = state;
-  const auth = state.authentication.toJS();
+  const auth = state.authentication;
   return {
     dispatch,
     auth,

@@ -21,7 +21,7 @@ import {
 
 const constructFirebaseUser = firebaseUser => ({
   data: {
-    token: firebaseUser.ze,
+    token: firebaseUser.refreshToken,
     email: firebaseUser.email,
   },
 });
