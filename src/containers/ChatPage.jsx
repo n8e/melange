@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { browserHistory } from 'react-router';
 
 import Chat from '../components/chat/Chat';
@@ -63,8 +62,8 @@ ChatPageContainer.propTypes = {
 
 function mapStateToProps(state) {
   const { dispatch } = state;
-  const auth = state.authentication.toJS();
-  const messaging = state.messaging.toJS();
+  const auth = state.authentication;
+  const messaging = state.messaging;
   return {
     dispatch,
     auth,

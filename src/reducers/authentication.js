@@ -1,76 +1,75 @@
-import { Map, fromJS } from 'immutable';
 import { viewToken, getEmail } from '../utils';
 import fieldsValidationReducer from './fieldsValidationReducer';
 
-export const INITIAL_AUTH_STATE = Map({
+export const INITIAL_AUTH_STATE = {
   isAuthenticated: !!viewToken(),
   isFetching: false,
-  credentials: Map({
+  credentials: {
     username: '',
     email: getEmail(),
     password: '',
     confirmPassword: '',
-  }),
+  },
   error: null,
   user: null,
   isShowingLogin: true,
-  validations: Map({
+  validations: {
     isValid: false,
-  }),
-});
+  },
+};
 
 const authentication = (state = INITIAL_AUTH_STATE, action) => {
   switch (action.type) {
     case 'LOGIN_REQUEST':
     case 'SIGNUP_REQUEST':
-      return state.merge(Map({
+      return Object.assign({}, state, {
         isFetching: true,
-        credentials: fromJS(action.credentials),
-      }));
+        credentials: action.credentials,
+      });
 
     case 'LOGIN_SUCCESS':
     case 'SIGNUP_SUCCESS':
-      return state.merge(Map({
+      return Object.assign({}, state, {
         isAuthenticated: true,
         isFetching: false,
-        credentials: Map({
+        credentials: {
           username: '',
-          email: fromJS(action.user.email),
+          email: action.user.email,
           password: '',
           confirmPassword: '',
-        }),
+        },
         error: null,
-        user: fromJS(action.user),
-      }));
+        user: action.user,
+      });
 
     case 'LOGIN_FAILURE':
     case 'SIGNUP_FAILURE':
-      return state.merge(Map({
+      return Object.assign({}, state, {
         isAuthenticated: false,
         isFetching: false,
-        error: fromJS(action.error),
+        error: action.error,
         user: null,
-      }));
+      });
 
     case 'LOGOUT_REQUEST':
     case 'LOGOUT_SUCCESS':
-      return INITIAL_AUTH_STATE.merge({
+      return Object.assign({}, state, {
         isAuthenticated: false,
       });
 
     case 'CREDENTIALS_UPDATE':
-      return state.merge(Map({
-        credentials: fromJS(action.credentials),
-      }));
+      return Object.assign({}, state, {
+        credentials: action.credentials,
+      });
 
     case 'TOGGLE_LOGIN_VIEW':
-      return state.merge(Map({
+      return Object.assign({}, state, {
         isShowingLogin: !state.get('isShowingLogin'),
         error: null,
-        validations: Map({
+        validations: {
           isValid: false,
-        }),
-      }));
+        },
+      });
 
     /**
      * Validate input fields entered by the user.
@@ -78,23 +77,23 @@ const authentication = (state = INITIAL_AUTH_STATE, action) => {
      * fact that we're validating auth fields.
      */
     case 'VALIDATE_AUTH_FIELD':
-      return state.merge(fieldsValidationReducer(state, {
+      return Object.assign({}, state, fieldsValidationReducer(state, {
         type: action.field,
         target: 'credentials',
         currentView: 'auth',
       }));
 
     case 'FETCH_USER_DETAILS_SUCCESS':
-      return state.merge(Map({
-        user: action.user, // BUG: This should be fromJS(action.user)
-      }));
+      return Object.assign({}, state, {
+        user: action.user,
+      });
 
     case 'USER_DETAILS_UPDATE_SUCCESS': {
       const user = state.get('user');
       if (user._id === action.user._id) {
-        return state.mergeDeep(Map({
-          user: action.user, // Propagated BUG: Should be fromJS(action.user)
-        }));
+        return Object.assign({}, state, {
+          user: action.user,
+        });
       }
       return state;
     }

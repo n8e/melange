@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import '../css/Login.css';
+import './Login.css';
 
 const Login = props => (
   <div className="login-container">
@@ -20,7 +20,7 @@ const Login = props => (
         <input
           name="email"
           type="email"
-          value={props.auth.credentials.email || 'godmetweenciati@gmail.com'}
+          value={props.email}
           onBlur={props.onValidateField}
           onChange={props.onFieldUpdate}
           placeholder="email"
@@ -32,7 +32,7 @@ const Login = props => (
         <input
           name="password"
           type="password"
-          value={props.auth.credentials.password || 'Abcd123!'}
+          value={props.password}
           onBlur={props.onValidateField}
           onChange={props.onFieldUpdate}
           placeholder="password"

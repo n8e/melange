@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Nav, Navbar, MenuItem, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 
 class Header extends Component {
   static propTypes = {
@@ -50,7 +49,7 @@ class Header extends Component {
     return (
       <div>
         <div>
-          { this.props.location.pathname !== '/signin' ? this.renderNavBar() : null }
+          { this.props.location.pathname !== '/login' ? this.renderNavBar() : null }
         </div>
         <div>
           {children}
@@ -61,7 +60,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  auth: state.authentication.toJS(),
+  auth: state.authentication,
 })
 
 export default connect(mapStateToProps)(Header)

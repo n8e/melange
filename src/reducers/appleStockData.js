@@ -1,9 +1,8 @@
-import { Map, List } from 'immutable';
 import { appleStock } from '@vx/mock-data';
 
-export const INITIAL_DATE_DATA_STATE = Map({
-  appleStock: List(appleStock),
-});
+export const INITIAL_DATE_DATA_STATE = {
+  appleStock: appleStock,
+};
 
 const appleStockData = (state = INITIAL_DATE_DATA_STATE, action) => {
   switch (action.type) {

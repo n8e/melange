@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 
 import Profile from '../components/profile/Profile';
 import { profileUpdate } from '../actions';
@@ -71,7 +70,7 @@ ProfilePageContainer.propTypes = {
 
 function mapStateToProps(state) {
   const { dispatch } = state;
-  const profile = state.profile.toJS();
+  const profile = state.profile;
   return {
     dispatch,
     profile,

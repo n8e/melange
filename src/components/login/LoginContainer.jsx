@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { toJS } from 'immutable'; // eslint-disable-line no-unused-vars
 import { browserHistory } from 'react-router';
 
-import Login from '../components/login/Login';
-import { validateAuthField, loginUser, credentialsUpdate } from '../actions';
+import Login from './Login';
+import { validateAuthField, loginUser, credentialsUpdate } from '../../actions';
 
 class LoginPageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      auth: {
+        credentials: {
+          email: this.props.auth.credentials.email || 'godmetweenciati@gmail.com',
+          password: this.props.auth.credentials.password || 'Abcd123!'
+        }
+      },
       errors: {
         email: null,
         password: null,
@@ -23,6 +28,16 @@ class LoginPageContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if(nextProps.auth.credentials.email !== this.props.auth.credentials.email) {
+      this.setState({ 
+        auth : Object.assign({}, this.state.auth, { credentials: Object.assign({}, this.state.auth.credentials, { email: nextProps.auth.credentials.email })})
+      })
+    }
+    if(nextProps.auth.credentials.password !== this.props.auth.credentials.password) {
+      this.setState({
+        auth : Object.assign({}, this.state.auth, { credentials: Object.assign({}, this.state.auth.credentials, { password: nextProps.auth.credentials.password })})
+      })
+    }
     if (nextProps.auth.user && nextProps.auth.user.token) {
       // redirect
       browserHistory.push('/home');
@@ -48,8 +63,7 @@ class LoginPageContainer extends Component {
   }
 
   handleAuthAction() {
-    console.log('CREDENTIALS:', this.props.auth.credentials);
-    this.props.dispatch(loginUser(this.props.auth.credentials));
+    this.props.dispatch(loginUser(this.state.auth.credentials));
   }
 
   render() {
@@ -59,20 +73,13 @@ class LoginPageContainer extends Component {
         onFieldUpdate={this.handleFieldUpdate}
         onValidateField={this.handleValidateField}
         errors={this.state.errors}
+        email={this.state.auth.credentials.email}
+        password={this.state.auth.credentials.password}
         {...this.props}
       />
     );
   }
 }
-
-LoginPageContainer.defaultProps = {
-  auth: {
-    isShowingLogin: true,
-    isFetching: false,
-    credentials: {},
-    validations: {},
-  },
-};
 
 LoginPageContainer.propTypes = {
   auth: PropTypes.shape({
@@ -89,7 +96,7 @@ LoginPageContainer.propTypes = {
 
 function mapStateToProps(state) {
   const { dispatch } = state;
-  const auth = state.authentication.toJS();
+  const auth = state.authentication;
   return {
     dispatch,
     auth,

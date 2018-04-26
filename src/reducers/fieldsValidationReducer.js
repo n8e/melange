@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 import Validator from 'validator';
 
 /**
@@ -14,7 +13,7 @@ import Validator from 'validator';
 
 // TODO: Refactor this whole function into composable functions. :cold_sweat:
 
-export default function (state = Map(), action) {
+export default function (state = {}, action) {
   let newState = state;
 
   // We need to modify where we get field values from in the state based on
@@ -24,23 +23,23 @@ export default function (state = Map(), action) {
     case 'username': {
       const username = state.getIn([action.target, 'username']);
       if (!username) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             username: 'This field is required.'
-          })
-        }));
+          }
+        });
       } else if (!Validator.isLength(username, { min: 3, max: 20 })) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             username: 'Username should be between 3 and 20 characters.'
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'username'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             username: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -48,23 +47,23 @@ export default function (state = Map(), action) {
     case 'email': {
       const email = state.getIn([action.target, 'email']);
       if (!email) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             email: 'This field is required.'
-          })
-        }));
+          }
+        });
       } else if (!Validator.isEmail(email)) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             email: 'Please provide a valid email address.'
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'email'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             email: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -79,41 +78,41 @@ export default function (state = Map(), action) {
       const password = state.getIn([action.target, 'password']);
       const password2 = state.getIn([action.target, 'confirmPassword']);
       if (!password && action.currentView === 'auth') {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             password: 'This field is required.'
-          })
-        }));
+          }
+        });
       } else if (password && !Validator.isLength(password, { min: 6 })) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             password: 'Password should be 6 or more characters long.'
-          })
-        }));
+          }
+        });
       } else if (password && password.length >= 6 &&
           !password2 && action.currentView === 'userDetails') {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: 'Please confirm your password',
             password: null
-          })
-        }));
+          }
+        });
       } else if (!password && state.getIn(['validations', 'confirmPassword'])) {
         /**
          * If the user just deleted their new password, remove any validations
          * that may have been there for the confirmPassword field.
          */
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: null
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'password'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             password: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -129,30 +128,30 @@ export default function (state = Map(), action) {
     case 'confirmPassword': {
       const confirmPassword = state.getIn([action.target, 'confirmPassword']);
       if (!confirmPassword && action.currentView === 'auth') {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: 'This field is required.'
-          })
-        }));
+          }
+        });
       } else if (!confirmPassword && action.currentView === 'userDetails' &&
           state.getIn([action.target, 'password'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: 'This field is required.'
-          })
-        }));
+          }
+        });
       } else if (confirmPassword !== state.getIn([action.target, 'password'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: 'The passwords do not match.'
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'confirmPassword'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             confirmPassword: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -160,23 +159,23 @@ export default function (state = Map(), action) {
     case 'title': {
       const title = state.getIn([action.target, 'title']);
       if (!title) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             title: 'This field is required'
-          })
-        }));
+          }
+        });
       } else if (title.length > 144) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             title: 'This field should not be more than 144 characters.'
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'title'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             title: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -184,23 +183,23 @@ export default function (state = Map(), action) {
     case 'content': {
       const content = state.getIn([action.target, 'content']);
       if (!content) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             content: 'This field is required'
-          })
-        }));
+          }
+        });
       } else if (content.length < 10) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             content: 'This field field should be at least 10 characters.'
-          })
-        }));
+          }
+        });
       } else if (state.getIn(['validations', 'content'])) {
-        newState = state.mergeDeep(Map({
-          validations: Map({
+        newState = Object.assign({}, state, {
+          validations: {
             content: null
-          })
-        }));
+          }
+        });
       }
       break;
     }
@@ -264,11 +263,11 @@ export default function (state = Map(), action) {
       !newState.getIn(['validations', 'content']);
   }
 
-  newState = newState.mergeDeep(Map({
-    validations: Map({
+  newState = Object.assign({}, newState, {
+    validations: {
       isValid: !!isValid
-    })
-  }));
+    }
+  });
 
   return newState;
 }
