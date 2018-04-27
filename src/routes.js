@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import Header from './containers/Header';
+import Home from './components/home/Home';
 import App from './containers/App';
 import ChatPage from './containers/ChatPage';
 import DashboardPage from './containers/DashboardContainer';
@@ -18,7 +18,7 @@ const checkAuth = (ignored, replace) => {
   if (!viewToken()) replace({ pathname: '/login' });
 };
 
-export default <Route path="/" component={Header}>
+export default <Route path="/" component={Home}>
   <Route path="/home" component={App} onEnter={checkAuth} />
   <Route path="/profile" component={ProfilePage} onEnter={checkAuth} />
   <Route path="/login" component={LoginContainer} />
