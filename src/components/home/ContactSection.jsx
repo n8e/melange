@@ -15,7 +15,7 @@ class ContactSection extends React.Component {
 
           <div className="row">
             <div className="col-lg-12">
-              <form id="contactForm" name="sentMessage" novalidate>
+              <form id="contactForm" name="sentMessage" noValidate>
                 <div className="row">
   
                   <div className="col-md-6">

@@ -28,9 +28,9 @@ class AboutSection extends React.Component {
       timelineBodyText: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!'
     }];
 
-    return aboutItems.map(item => {
+    return aboutItems.map((item, index) => {
       return (
-        <li className={`${item.listItemClassName}`}>
+        <li className={`${item.listItemClassName}`} key={index}>
           <div className="timeline-image">
             <img className="rounded-circle img-fluid" src={`${item.imageSrc}`} alt="" />
           </div>

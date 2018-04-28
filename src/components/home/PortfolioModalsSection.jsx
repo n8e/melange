@@ -70,9 +70,9 @@ class PortfolioModalsSection extends React.Component {
       }
     }];
 
-    return portfolioModals.map(portfolio => {
+    return portfolioModals.map((portfolio, index) => {
       return (
-        <div className="portfolio-modal modal fade" id={`${portfolio.projectId}`} tabindex="-1" role="dialog" aria-hidden="true">
+        <div className="portfolio-modal modal fade" id={`${portfolio.projectId}`} tabIndex="-1" role="dialog" aria-hidden="true" key={index}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="close-modal" data-dismiss="modal">
@@ -90,9 +90,9 @@ class PortfolioModalsSection extends React.Component {
                       <img className="img-fluid d-block mx-auto" src={`${portfolio.imageSrc}`} alt="" />
                       <p>{portfolio.projectDescription}</p>
                       <ul className="list-inline">
-                        { Object.keys(portfolio.projectDetails).map(key => {
+                        { Object.keys(portfolio.projectDetails).map((key, ind) => {
                           return (
-                            <li>{`${key}: ${portfolio.projectDetails[key]}`}</li>
+                            <li key={ind}>{`${key}: ${portfolio.projectDetails[key]}`}</li>
                           );
                         }) }
                       </ul>

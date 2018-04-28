@@ -4,9 +4,9 @@ class Navigation extends React.Component {
   renderNavigationItems = () => {
     const navItems = ['Services', 'Portfolio', 'About', 'Team', 'Contact'];
 
-    return navItems.map(item => {
+    return navItems.map((item, index) => {
       return (
-        <li className="nav-item">
+        <li className="nav-item" key={index}>
           <a className="nav-link js-scroll-trigger" href="#about">{item}</a>
         </li>
       )

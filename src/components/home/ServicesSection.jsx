@@ -16,9 +16,9 @@ class ServicesSection extends React.Component {
       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.'
     }];
 
-    return serviceItems.map(item => {
+    return serviceItems.map((item, index) => {
       return (
-        <div className="col-md-4">
+        <div className="col-md-4" key={index}>
           <span className="fa-stack fa-4x">
             <i className="fa fa-circle fa-stack-2x text-primary"></i>
             <i className={`fa ${item.faClass} fa-stack-1x fa-inverse`}></i>

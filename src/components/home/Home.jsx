@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './Home.css';
+
 import Navigation from './Navigation';
 import PortfolioGridSection from './PortfolioGridSection';
 import Header from './Header';

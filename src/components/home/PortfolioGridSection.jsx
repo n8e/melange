@@ -34,9 +34,9 @@ class PortfolioGridSection extends React.Component {
       paragraphText: 'Photography'
     }];
 
-    return portfolioItems.map(item => {
+    return portfolioItems.map((item, index) => {
       return (
-        <div className="col-md-4 col-sm-6 portfolio-item">
+        <div className="col-md-4 col-sm-6 portfolio-item" key={index}>
           <a className="portfolio-link" data-toggle="modal" href={`${item.href}`}>
             <div className="portfolio-hover">
               <div className="portfolio-hover-content">

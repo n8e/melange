@@ -25,9 +25,9 @@ class TeamSection extends React.Component {
       linkedinLink: '#'
     }];
 
-    return teamMembers.map(member => {
+    return teamMembers.map((member, index) => {
       return (
-        <div className="col-sm-4">
+        <div className="col-sm-4" key={index}>
           <div className="team-member">
             <img className="mx-auto rounded-circle" src={`${member.imageSrc}`} alt="" />
             <h4>{member.fullName}</h4>
