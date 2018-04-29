@@ -13,7 +13,7 @@ import { viewToken } from './utils/index';
 
 const checkAuth = (ignored, replace) => {
   if (ignored.routes.length === 1 && ignored.routes[0].path === '/' && viewToken()) {
-    replace({ pathname: '/home' });
+    replace({ pathname: '/dashboard' });
   }
   if (!viewToken()) replace({ pathname: '/login' });
 };

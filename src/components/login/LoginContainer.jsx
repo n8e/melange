@@ -40,7 +40,7 @@ class LoginPageContainer extends Component {
     }
     if (nextProps.auth.user && nextProps.auth.user.token) {
       // redirect
-      browserHistory.push('/home');
+      browserHistory.push('/dashboard');
     }
   }
 
