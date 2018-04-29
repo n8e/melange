@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import Profile from '../components/profile/Profile';
-import { profileUpdate } from '../actions';
+import Profile from './Profile';
+import { profileUpdate } from '../../actions';
 
 class ProfilePageContainer extends Component {
   constructor(props) {

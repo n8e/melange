@@ -2,12 +2,19 @@ import React from 'react';
 
 class Navigation extends React.Component {
   renderNavigationItems = () => {
-    const navItems = ['Services', 'Portfolio', 'About', 'Team', 'Contact'];
+    const navItems = [
+      { name: 'Services', href: '#services' },
+      { name: 'Portfolio', href: '#portfolio' },
+      { name: 'About', href: '#about' },
+      { name: 'Team', href: '#team' },
+      { name: 'Contact', href: '#contact' },
+      { name: 'Login', href: 'login' }
+    ];
 
     return navItems.map((item, index) => {
       return (
         <li className="nav-item" key={index}>
-          <a className="nav-link js-scroll-trigger" href="#about">{item}</a>
+          <a className="nav-link js-scroll-trigger" href={item.href}>{item.name}</a>
         </li>
       )
     })

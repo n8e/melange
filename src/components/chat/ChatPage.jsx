@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import Chat from '../components/chat/Chat';
-import { sendChatName, sendChatMessage } from '../actions';
+import Chat from './Chat';
+import { sendChatName, sendChatMessage } from '../../actions';
 
 class ChatPageContainer extends Component {
   constructor(props) {
