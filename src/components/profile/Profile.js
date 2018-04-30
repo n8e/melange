@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../css/Profile.css';
+import './Profile.css';
 
 const Profile = ({ name, nameColor, textColor, profile, handleClick, handleChange }) => (
   <div className="profile-card">

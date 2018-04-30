@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import '../css/Chat.css';
+import './Chat.css';
 
 const getMessageTime = (timeStr) => {
   const dt = new Date(timeStr);
